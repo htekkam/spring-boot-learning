@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -58,5 +59,38 @@ class StudentRepositoryTest {
         studentRepository.findByFirstName("hari")
                 .stream()
                 .forEach(System.out::println);
+    }
+
+    @Test
+    public void findByGuardianName(){
+        studentRepository.findByGuardianName("gunnu")
+                .stream()
+                .forEach(System.out::println);
+    }
+
+    @Test
+    public void printStudent(){
+        Optional<Student> studentByEmailAddress = studentRepository.getStudentByEmailAddress("harikrishna.tekkam@gmail.com");
+        System.out.println("studentByEmailAddress::"+(studentByEmailAddress.isPresent() ? studentByEmailAddress.get() : "student does not exist"));
+
+    }
+
+    @Test
+    public void printGetStudentByEmailUsingNativeQuery(){
+        Student student = studentRepository.getStudentByEmailUsingNativeQuery("harikrishna.tekkam@gmailcom");
+        System.out.println("student::"+student);
+    }
+
+    @Test
+    public void getStudentByFirstNameWithNamedParam(){
+        Student student = studentRepository.getStudentByFirstNameWithNamedParam("hari");
+        System.out.println("student with named parameters::"+student);
+    }
+
+    @Test
+    public void updateStudentEmailById(){
+        int totalRecordsUpdated = studentRepository.updateStudentEmailById("hari186980@gmail.com",
+                1);
+        System.out.println("totalRecordsUpdated::"+totalRecordsUpdated);
     }
 }
