@@ -1,6 +1,7 @@
 package com.techie.springboot.basics.controller;
 
 import com.techie.springboot.basics.entity.Department;
+import com.techie.springboot.basics.error.DepartmentNotFoundException;
 import com.techie.springboot.basics.service.DepartmentService;
 import jakarta.persistence.GeneratedValue;
 import jakarta.validation.Valid;
@@ -32,7 +33,7 @@ public class DepartmentController {
     }
 
     @GetMapping("/departments/{id}")
-    public Department getDepartmentById(@PathVariable("id") Integer departmentId){
+    public Department getDepartmentById(@PathVariable("id") Integer departmentId) throws DepartmentNotFoundException {
         LOGGER.info("inside getDepartmentById() ");
         return departmentService.getDepartmentById(departmentId);
     }
