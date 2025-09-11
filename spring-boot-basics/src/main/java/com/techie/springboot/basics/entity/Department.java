@@ -22,7 +22,7 @@ public class Department {
     private long departmentId;
 
     @NotBlank(message = "please enter the department name")
-    @Size(max = 15, min = 1)
+    @Size(max = 100, min = 1)
 //    @Positive
 //    @PositiveOrZero
 //    @Future
