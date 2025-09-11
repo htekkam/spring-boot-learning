@@ -17,7 +17,7 @@ public class DepartmentController {
     @Autowired
     private DepartmentService departmentService;
 
-    private Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
 
     @PostMapping("/departments")
     public Department saveDepartment(@Valid @RequestBody Department department){
@@ -27,16 +27,19 @@ public class DepartmentController {
 
     @GetMapping("/departments")
     public List<Department> findAllDepartments(){
+        LOGGER.info("inside findAllDepartments() ");
         return departmentService.findAllDepartments();
     }
 
     @GetMapping("/departments/{id}")
     public Department getDepartmentById(@PathVariable("id") Integer departmentId){
+        LOGGER.info("inside getDepartmentById() ");
         return departmentService.getDepartmentById(departmentId);
     }
 
     @DeleteMapping("/departments/{id}")
     public String deleteDepartmentById(@PathVariable("id") Long departmentId){
+        LOGGER.info("inside deleteDepartmentById() ");
         departmentService.deleteDepartmentById(departmentId);
         return "Department deleted successfully!!!";
     }
@@ -44,12 +47,14 @@ public class DepartmentController {
     @PutMapping("/departments/{id}")
     public Department updateDepartmentById(@PathVariable("id") Long departmentId,
                                            @RequestBody Department department){
-
+        LOGGER.info("inside updateDepartmentById() ");
         return departmentService.updateDepartmentById(departmentId,department );
     }
 
     @GetMapping("/departments/name/{name}")
     public Department getDepartmentByName(@PathVariable("name") String departmentName){
+
+        LOGGER.info("inside getDepartmentByName() ");
         return departmentService.getDepartmentByName(departmentName);
     }
 }
