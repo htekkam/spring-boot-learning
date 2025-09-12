@@ -1,0 +1,71 @@
+server:
+  port: '8086'
+
+spring:
+  profiles:
+    active:
+      - qa
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    username: root
+    url: jdbc:mysql://localhost:3306/springboot-learning
+    password: Gunnu@2018
+  application:
+    name: spring-boot-basics
+  test:
+    database:
+      replace: NONE
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+welcome:
+  message: welcome to spring boot learning updated ----!!!
+
+---
+spring:
+  config:
+    activate:
+      on-profile: qa
+  datasource:
+    username: root
+    url: jdbc:mysql://localhost:3306/springboot-learning-qa
+    password: Gunnu@2018
+  application:
+    name: spring-boot-basics
+  test:
+    database:
+      replace: NONE
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+welcome:
+  message: welcome to spring boot learning updated ----!!!
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    username: root
+    url: jdbc:mysql://localhost:3306/springboot-learning-prod
+    password: Gunnu@2018
+  application:
+    name: spring-boot-basics
+  test:
+    database:
+      replace: NONE
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+welcome:
+  message: welcome to spring boot learning updated ----!!!
+
